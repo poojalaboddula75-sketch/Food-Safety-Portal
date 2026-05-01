@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Safety Education | City Portal</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-blue: #0f4ca8;
+      --navy-deep: #12325f;
+      --navy-dark: #1b215c;
+      --teal: #0f766e;
+      --accent-gold: #fbbf24;
+      --bg-light: #f3f6fb;
+      --white: #ffffff;
+      --text-gray: #4b5563;
+      --border-light: #cfd8e3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: #1f2937; line-height: 1.6; }
+
+    /* Header Styling */
+    header { 
+      background: linear-gradient(135deg, #0b5cab, var(--teal)); 
+      color: var(--white); 
+      padding: 50px 20px; 
+      text-align: center; 
+      border-bottom: 5px solid var(--accent-gold); 
+    }
+    header h1 { font-size: 36px; margin-bottom: 10px; }
+    header p { opacity: 0.9; font-weight: 300; }
+
+    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+    .back-nav { margin-bottom: 30px; }
+    .back-nav a { 
+      color: var(--primary-blue); 
+      text-decoration: none; 
+      font-weight: 600; 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+    }
+
+    /* 4 Pillars - Single Line Layout */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* FORCED ONE LINE ON DESKTOP */
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .edu-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-top: 5px solid var(--primary-blue);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .edu-card h3 {
+      color: var(--navy-deep);
+      font-size: 18px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-circle {
+      min-width: 32px;
+      height: 32px;
+      background: #e0e7ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      color: var(--primary-blue);
+    }
+
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      font-size: 13px;
+      margin-bottom: 10px;
+      padding-left: 20px;
+      position: relative;
+      color: var(--text-gray);
+    }
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    /* Dining Guide Section */
+    .guide-box {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      margin-top: 30px;
+      border: 1px solid var(--border-light);
+    }
+    .guide-img {
+      flex: 1;
+      min-width: 300px;
+      background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80') center/cover;
+      min-height: 300px;
+    }
+    .guide-content { flex: 1.5; padding: 40px; min-width: 300px; }
+
+    .info-banner {
+      background: var(--navy-deep);
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin: 40px 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Footer - Matches Index.html */
+    footer {
+      background: var(--navy-dark);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+      margin-top: 80px;
+      border-top: 5px solid var(--accent-gold);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .edu-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 650px) {
+      .edu-grid { grid-template-columns: 1fr; }
+      .guide-content { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>City Food Safety Education</h1>
+    <p>Public Health Initiative for Safer Communities</p>
+  </header>
+
+  <div class="container">
+    <div class="back-nav">
+      <a href="index.html">← Back to Portal Home</a>
+    </div>
+
+    <section>
+      <h2 style="color: var(--navy-deep); font-size: 28px; border-left: 6px solid var(--primary-blue); padding-left: 15px;">The Four Pillars</h2>
+      <p style="margin: 10px 0 0 20px; color: var(--text-gray);">Essential steps to prevent foodborne illness at home.</p>
+
+      <div class="edu-grid">
+        <div class="edu-card">
+          <h3><div class="icon-circle">1</div> Clean</h3>
+          <ul class="checklist">
+            <li>Wash hands for 20s with soap.</li>
+            <li>Wash fruits/veggies under water.</li>
+            <li>Sanitize surfaces daily.</li>
+          </ul>
+        </div>
+
+        <div class="edu-card" style="border-top-color: var(--teal);">
+          <h3><div class="icon-circle">2</div> Separate</h3>
+          <ul class="checklist">
+            <li>Different boards for meat/veg.</li>
+            <li>Keep raw meat in bottom shelf.</li>
+            <li>Don't reuse marinade liquid.</li>
+          </ul>
+        </div>
+
+        <div class="edu-card" style="border-top-color: var(--accent-gold);">
+          <h3><div class="icon-circle">3</div> Cook</h3>
+          <ul class="checklist">
+            <li>Poultry: 165°F (74°C).</li>
+            <li>Ground Beef: 160°F (71°C).</li>
+            <li>Serve while steaming hot.</li>
+          </ul>
+        </div>
+
+        <div class="edu-card" style="border-top-color: var(--navy-deep);">
+          <h3><div class="icon-circle">4</div> Chill</h3>
+          <ul class="checklist">
+            <li>Fridge below 40°F (4°C).</li>
+            <li>Refrigerate within 2 hours.</li>
+            <li>Never thaw on the counter.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 60px;">
+      <h2 style="color: var(--navy-deep); font-size: 28px; border-left: 6px solid var(--teal); padding-left: 15px;">Smart Dining Guide</h2>
+      
+      <div class="guide-box">
+          <div class="guide-img"></div>
+          <div class="guide-content">
+              <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Choosing a Safe Establishment</h3>
+              <p style="margin-bottom: 20px; font-size: 14px;">When dining out, your health depends on the kitchen's hygiene. Look for these signs of quality:</p>
+              <ul class="checklist">
+                  <li><strong>Visible Grades:</strong> Ensure the City Health Grade is displayed.</li>
+                  <li><strong>Hygiene Kits:</strong> Staff should use gloves and hairnets for prep.</li>
+                  <li><strong>Restroom Cleanliness:</strong> Often reflects the kitchen's standard.</li>
+                  <li><strong>Freshness:</strong> Avoid buffets where food isn't kept at temp.</li>
+              </ul>
+          </div>
+      </div>
+    </section>
+
+    <div class="info-banner">
+      <div style="font-size: 30px;">🛡️</div>
+      <div>
+        <h4 style="margin: 0;">Project Fact</h4>
+        <p style="margin: 0; opacity: 0.8; font-size: 14px;">Following these  can reduce the risk of foodborne bacteria by up to 90%.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p style="font-weight: 700; font-size: 18px; margin-bottom: 5px;">Food Safety Portal</p>
+    <p>@ Copyrights are reserved for 25955A1204</p>
+    <div style="margin-top: 15px; opacity: 0.6; font-size: 12px;">City Government Digital Service Standard</div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Safety Portal</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ... [Keeping your CSS Variables and Styles exactly as provided] ... */
+    :root {
+      --primary-blue: #0f4ca8;
+      --primary-blue-hover: #0c3d87;
+      --navy-deep: #12325f;
+      --navy-dark: #1b215c;
+      --teal: #0f766e;
+      --teal-hover: #0b5d58;
+      --accent-gold: #fbbf24;
+      --accent-light: #ffd67a;
+      --bg-light: #f3f6fb;
+      --text-dark: #1f2937;
+      --text-gray: #374151;
+      --white: #ffffff;
+      --border-light: #cfd8e3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+    a { text-decoration: none; transition: color 0.3s ease; }
+
+    /* Top Strip */
+    .top-strip { background: var(--primary-blue); color: var(--white); padding: 10px 20px; font-size: 13px; font-weight: 500; }
+    .top-strip .links { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+    .top-strip a { color: rgba(255, 255, 255, 0.9); }
+    .top-strip a:hover { color: var(--accent-light); }
+    .top-strip span { opacity: 0.4; }
+
+    /* Portal Note */
+    .portal-note { background: var(--navy-dark); color: #f5f7ff; padding: 16px; text-align: center; font-size: 15px; }
+    .portal-note .inner { max-width: 1100px; margin: 0 auto; }
+
+    /* Header */
+    header { background: linear-gradient(135deg, #0b5cab, var(--teal)); color: var(--white); border-bottom: 4px solid var(--accent-gold); }
+    .header-inner { max-width: 1200px; margin: 0 auto; padding: 24px 20px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .logo-area { display: flex; align-items: center; gap: 18px; }
+    .logo-circle { width: 75px; height: 75px; border-radius: 50%; background: var(--white); color: var(--primary-blue); display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .brand h1 { font-size: 32px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.5px; }
+    .brand p { font-size: 15px; opacity: 0.95; font-weight: 400; }
+    .badge { background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); padding: 12px 20px; border-radius: 12px; font-size: 13px; font-weight: 500; min-width: 220px; text-align: center; }
+
+    /* Navigation */
+    nav { background: rgba(18, 50, 95, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    nav .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; }
+    nav a, nav button { color: var(--white); padding: 16px 20px; display: inline-block; font-size: 15px; font-weight: 500; background: none; border: none; cursor: pointer; font-family: inherit; }
+    nav a:hover, nav button:hover { background: var(--primary-blue); }
+
+    /* Layout Components */
+    .section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+    .section-title { margin-bottom: 24px; color: var(--navy-deep); font-size: 32px; font-weight: 700; border-left: 6px solid var(--primary-blue); padding-left: 16px; }
+    .grid-2 { display: grid; gap: 24px; grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { display: grid; gap: 24px; grid-template-columns: repeat(3, 1fr); }
+    .card, .form-box { background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); padding: 24px; border-top: 4px solid var(--primary-blue); }
+    
+    /* Auth/Admin Special Styles */
+    #admin-section { display: none; background: #eef2f7; padding: 40px 20px; }
+    .auth-status-bar { background: #fff; padding: 10px; text-align: center; font-size: 12px; border-bottom: 1px solid #ddd; }
+    
+    input, select, textarea { width: 100%; padding: 14px 16px; margin-bottom: 16px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 15px; }
+    
+    .banner { position: relative; min-height: 400px; background: linear-gradient(rgba(18, 50, 95, 0.7), rgba(18, 50, 95, 0.8)), url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80") center/cover fixed; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 40px 20px; }
+    
+    /* Map Placeholder */
+    .map-box iframe { width: 100%; height: 400px; border: none; background: #eee; }
+
+    @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div class="top-strip">
+    <div class="links">
+      <span id="user-email-display">Welcome Guest</span> |
+      <a href="#admin-anchor" onclick="showAdmin()">Admin Login</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-circle">FS</div>
+        <div class="brand">
+          <h1>Food Safety Portal</h1>
+          <p>Safe Food • Healthy Citizens • Better City Services</p>
+        </div>
+      </div>
+      <div class="badge">A Public Service Portal</div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#">Overview</a>
+      <a href="education.html">Education</a>
+      <a href="#report">Report Issue</a>
+      <a href="#map">Map View</a>
+      <button id="logout-btn" style="display:none;" onclick="handleLogout()">Logout</button>
+    </div>
+  </nav>
+
+  <section class="banner">
+    <div class="banner-content">
+      <h2 style="font-size: 40px;">City Food Safety Information</h2>
+      <p>Report issues, check certifications, and learn safe practices.</p>
+    </div>
+  </section>
+
+  <section class="section" id="report">
+    <div class="grid-2">
+      <div class="form-box">
+        <h2 class="section-title" style="font-size:24px;">Report Issue or Illness</h2>
+        <form id="complaintForm">
+            <input type="text" id="reporterName" placeholder="Full Name" required>
+            <input type="text" id="venueName" placeholder="Restaurant / Market Name" required>
+            <select id="reportType">
+              <option value="Food-related Illness">Food-related Illness</option>
+              <option value="Safety Concern">Food Safety Concern</option>
+            </select>
+            <textarea id="reportDetails" rows="4" placeholder="Describe the issue" required></textarea>
+            <button type="button" id="submitComplaintBtn" onclick="submitComplaint()" style="width:100%; background:var(--primary-blue); color:white; padding:14px; border:none; border-radius:8px; cursor:pointer; font-weight:600;">Submit Secure Report</button>
+        </form>
+      </div>
+
+      <div class="form-box" id="suggestions">
+        <h2 class="section-title" style="font-size:24px;">Portal Suggestions</h2>
+        <form id="suggestionForm">
+            <input type="text" id="suggestorName" placeholder="Your Name">
+            <textarea id="suggestionText" rows="6" placeholder="Share your suggestion to improve food safety..."></textarea>
+            <button type="button" id="submitSuggestBtn" onclick="submitSuggestion()" style="width:100%; background:var(--teal); color:white; padding:14px; border:none; border-radius:8px; cursor:pointer; font-weight:600;">Submit Suggestion</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="map">
+    <h2 class="section-title">Map View</h2>
+    <div class="map-box" style="border-radius:16px; overflow:hidden; border: 1px solid #ddd;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121824.5244199999!2d78.3728!3d17.3850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebf2d7%3A0x6219e71541bc2c20!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1710000000000" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <div id="admin-anchor"></div>
+  <section id="admin-section" class="section">
+    <div id="login-ui" class="form-box" style="max-width:400px; margin:auto;">
+        <h2 style="text-align:center; margin-bottom:20px;">Admin Access</h2>
+        <input type="email" id="adminEmail" placeholder="Email">
+        <input type="password" id="adminPass" placeholder="Password">
+        <button onclick="handleEmailLogin()" style="width:100%; margin-bottom:10px; padding:10px; cursor:pointer;">Login</button>
+        <button onclick="handleGoogleLogin()" style="width:100%; background:#4285F4; color:white; border:none; padding:10px; cursor:pointer;">Sign in with Google</button>
+    </div>
+
+    <div id="dashboard-ui" style="display:none;">
+        <h2 class="section-title">Admin Dashboard - Incoming Reports</h2>
+        <div id="admin-data-list" class="grid-2">
+            </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--navy-dark); color:white; padding:40px 20px; text-align:center; margin-top:60px;">
+    <p>@ Copyrights are reseved for 25955A1204</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDWMyrNV6F5uUTuUbedA1cpQNyrY4OKmm4",
+      authDomain: "food-safety-245f2.firebaseapp.com",
+      projectId: "food-safety-245f2",
+      storageBucket: "food-safety-245f2.firebasestorage.app",
+      messagingSenderId: "122974185311",
+      appId: "1:122974185311:web:d82aab2c9ae6379d7178ea",
+      measurementId: "G-E6RBNMX1EF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // --- ADMIN CREDENTIALS ---
+    const ADMIN_CREDENTIALS = {
+        email: "admin@foodsafety.city",
+        pass: "CityAdmin2026"
+    };
+
+    // --- UI HELPERS ---
+    window.showAdmin = () => {
+        const adminSec = document.getElementById('admin-section');
+        adminSec.style.display = 'block';
+        // Scroll smoothly to the login box
+        adminSec.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // --- SUBMISSION LOGIC ---
+    window.submitComplaint = async () => {
+      const btn = document.getElementById('submitComplaintBtn');
+      const name = document.getElementById('reporterName').value;
+      const venue = document.getElementById('venueName').value;
+      const details = document.getElementById('reportDetails').value;
+
+      if(!name || !venue || !details) { alert("Please fill all fields."); return; }
+
+      try {
+        btn.disabled = true; btn.innerText = "Submitting...";
+        await addDoc(collection(db, "complaints"), {
+          name, venue, type: document.getElementById('reportType').value,
+          details, timestamp: new Date()
+        });
+        alert("✅ Success! Your report has been submitted.");
+        document.getElementById('complaintForm').reset();
+      } catch (e) { alert("❌ Submission failed."); } 
+      finally { btn.disabled = false; btn.innerText = "Submit Secure Report"; }
+    };
+
+    window.submitSuggestion = async () => {
+      const btn = document.getElementById('submitSuggestBtn');
+      const text = document.getElementById('suggestionText').value;
+      if(!text) { alert("Please enter a suggestion."); return; }
+
+      try {
+        btn.disabled = true; btn.innerText = "Sending...";
+        await addDoc(collection(db, "suggestions"), {
+          name: document.getElementById('suggestorName').value || "Anonymous",
+          text, timestamp: new Date()
+        });
+        alert("✅ Suggestion recorded!");
+        document.getElementById('suggestionForm').reset();
+      } catch (e) { alert("❌ Failed to send."); }
+      finally { btn.disabled = false; btn.innerText = "Submit Suggestion"; }
+    };
+
+    // --- HARDCODED ADMIN LOGIN LOGIC ---
+    window.handleEmailLogin = () => {
+        const emailInput = document.getElementById('adminEmail').value;
+        const passInput = document.getElementById('adminPass').value;
+        
+        if (emailInput === ADMIN_CREDENTIALS.email && passInput === ADMIN_CREDENTIALS.pass) {
+            alert("✅ Admin Login Successful!");
+            document.getElementById('user-email-display').innerText = "Admin: " + emailInput;
+            document.getElementById('login-ui').style.display = 'none';
+            document.getElementById('dashboard-ui').style.display = 'block';
+            document.getElementById('logout-btn').style.display = 'inline-block';
+            loadAdminReports();
+        } else {
+            alert("❌ Access Denied: Incorrect credentials.");
+        }
+    };
+
+    window.handleLogout = () => {
+        document.getElementById('user-email-display').innerText = "Welcome Guest";
+        document.getElementById('login-ui').style.display = 'block';
+        document.getElementById('dashboard-ui').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'none';
+        document.getElementById('admin-section').style.display = 'none';
+        alert("Logged out.");
+    };
+
+    async function loadAdminReports() {
+        const list = document.getElementById('admin-data-list');
+        list.innerHTML = "Checking database...";
+        try {
+            const q = query(collection(db, "complaints"), orderBy("timestamp", "desc"));
+            const snap = await getDocs(q);
+            list.innerHTML = "";
+            snap.forEach(doc => {
+                const d = doc.data();
+                list.innerHTML += `
+                    <div class="card">
+                        <h3 style="color:var(--primary-blue)">${d.type}</h3>
+                        <p><strong>Venue:</strong> ${d.venue}</p>
+                        <p>${d.details}</p>
+                        <small>From: ${d.name} | ${d.timestamp.toDate().toLocaleDateString()}</small>
+                    </div>`;
+            });
+        } catch (e) { list.innerHTML = "Error loading data."; }
+    }
+</script>
+</body>
+</html>
